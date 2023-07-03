@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+.north-body{
+    background-image: url('pt.svg');
+    background-repeat: no-repeat;
+    background-size: cover !important;
+    background-size: contain;
+    height: 40vw;
+}
+
+html, body{
+    background-color:#222222
+}
+
+.body-div, .north-body{
+    background-color: #222222;
+}
+
+footer{
+    background-color: #222222;
+    min-height: 10vw !important;
+}
+
+.card{
+    width: 84%;
+    height: 30vw;
+    background-color: white !important;
+}
+
+.info-container{
+    justify-content: center;
+    text-align: center;
+    padding-top: 5vw;
+    color: white;
+}
+.info-container{
+    font-size: large;
+    font-weight: bolder;
+    font-size: larger !important;
+    font-family: 'Cabin', sans-serif;
+}
+.heading{
+    padding-top: 1vw;
+    padding-bottom: 20px;
+    font-size: 2vw !important;
+}
+
+.north-card{
+    background-color: rgba(114, 52, 250, 0.7)!important;
+    border-radius: 40px!important;
+    border-color: black!important;
+    border-width: 2px!important;
+    border-style: solid !important;
+}
+
+footer{
+    height: 40% !important;
+}
+

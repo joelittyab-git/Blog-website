@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin&family=Wix+Madefor+Text&display=swap');
+
+.main-body{
+    background-image: url('lm.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: 'Cabin', sans-serif;
+    font-family: 'Wix Madefor Text', sans-serif;
+}
+
+.main-container{
+    width: 37%;
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    background-image: url('px.svg');
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading{
+    text-align: center;
+    padding-top: 30px;
+}
+
+.login-card{
+    width: 98%;
+    height: 98%;
+    background-color: rgba(0,0,0,0.9) !important;
+    color: #00ff28 !important;
+    overflow: hidden !important;
+    
+}
+
+hr{
+    background-color: #00ff28 !important;
+}
+
+.north{
+    text-align: center;
+    width: 60%;
+}
+
+.fm{
+    display: flex;
+    justify-content: center;
+    padding-top: 30%;
+}
+
+.ft{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 10%;
+}
+.cont{
+    display: flex;
+    justify-content: center;
+}
+
+.entry{
+    width: 100%;
+    border-color: #00ff28;
+    border-width: 1px;
+    border-style: solid !important;
+    border-radius: 8px;
+    padding: 7px;
+    background-color: #312f36;
+    color: white !important;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: white !important;
+    opacity: 0.8; /* Firefox */
+}
+ 
+
+.button{
+    height: 40px !important;
+    width: 140px !important;
+    border-color: #00ff28;
+    border-radius: 5px;
+    border-width: 1px;
+    border-style: solid !important;
+    background-color: #00ff28;
+    color: white !important;
+
+    transition-duration: 0.4s;
+}
+
+.button:hover{
+    transform: translateX(10px);
+    background-color: transparent !important;
+}
+
+.fa{
+    padding-top: 10%;
+}
+
+.set-div{
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cons{
+    padding-top: 2%;
+    padding-bottom: 3%!important;
+    font-size: 16px;
+    display: flex !important;
+    text-align: end;
+    padding-right: 3.5%;
+}
+
+.conr{
+    padding-top: 3%!important;
+    padding-bottom: 2%;
+    font-size: 16px;
+    text-align: left !important;
+    justify-content: start !important;
+    padding-left: 3.5%;
+}
+@media screen and (max-width:1310px) {
+    .main-container{
+        width: 60%!important;
+        height: 90%!important;
+    }
+    .set-div{
+        gap: 33% !important;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .main-container{
+        height: 100% !important;
+        width: 100% !important;
+
+    }
+}
+
+
+@media screen and (max-width: 1000px) {
+    .main-container{
+        width: 100%!important;
+        height: 100%!important;
+    }
+}
+
+

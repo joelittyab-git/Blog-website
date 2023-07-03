@@ -1,0 +1,77 @@
+
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'login.css')}}">
+    <script src="{{ url_for('static', filename = 'login.js') }}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+{% extends "common/mTemplate.html" %}
+
+{% block content %}
+
+<script>
+    document.onreadystatechange = function(){
+        if(document.readyState == 'complete'){
+            document.getElementById('spinner-border').style.display = 'none';
+            document.getElementById('loading-mask').style.visibility = 'visible';
+        }else{
+            document.getElementById('spinner-border').style.visibility = 'visible';
+            document.getElementById('loading-mask').style.visibility = 'hidden';
+        }
+    }
+</script>
+
+
+    <div class="main-body">
+        <div class="main-container">
+            <div class="login-card">
+                <div class="heading">
+                    <h1>Welcome Back!</h1>
+                </div>
+
+                <hr>
+                <div class="entry-div">
+                    <form action="" method="POST" id="login-form">
+                        {{ form.csrf_token }}
+                       <div class="cont">
+                            <div class="north">
+                                <div class="fm form-group">
+                                    {{ form.email_entry( placeholder = "Email", class="entry", id="email-entry") }}
+                                </div>
+                                
+                                <div class=" fm form-group">
+                                    {{ form.password_entry(placeholder = "password", class="entry", id="password-entry") }}
+                                </div>
+                                
+                                <div class=" ft form-check">
+                                    {{ form.remember_entry.label()}}
+                                    {{ form.remember_entry() }}
+                                </div>
+                                {% if failed_login==True%}
+                                    <div style="color:red" id="err-msg-otth">Incorrect email or password entered</div>
+                                {% else %}
+                                    <div style="min-height:10px">
+                                    </div>
+                                {% endif %}
+                                <div style="color:red" id="err-msg"></div>
+                                <div class=" fa form-group">
+                                    {{ form.login_entry(value = "Log In", class="button", id= "btn-req-holder") }}
+                                </div>
+                                
+                            </div>
+                       </div>
+                    </form>
+                    <div class="set-div">
+                        <div class="conr">
+                            <a href="#" style="color:#00ff28 !important;"> Forgot your password?</a> 
+                       </div>
+
+                       <div class="cons" style="color:white !important;">                        
+                            Don't have an account? &nbsp;<a style="color:#00ff28 !important;" href="{{ url_for('open_registrationpage')}}">Register</a>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

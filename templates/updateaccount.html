@@ -1,0 +1,149 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'updateaccount.css') }}">
+   
+</head>
+
+{% extends "common/mTemplate.html" %}
+
+{% block content %}
+<script>
+  document.onreadystatechange = function(){
+      if(document.readyState == 'complete'){
+          document.getElementById('spinner-border').style.display = 'none';
+          document.getElementById('loading-mask').style.visibility = 'visible';
+      }else{
+          document.getElementById('spinner-border').style.visibility = 'visible';
+          document.getElementById('loading-mask').style.visibility = 'hidden';
+      }
+  }
+</script>
+
+
+  <div class="body">
+    
+      <div class="card">
+        <div class="inner-card">
+            <img src="{{ url_for('static', filename = 'files/' + (db.get_row(table_name = 'User', data_list = {'email':session['email']})[4] )) }}" alt="" class="profile-img" id="profile-img" onclick="openPopUp()">
+          <div class="card-north">
+            <div class="north-cover" style="color: white;">
+              <h2> @{{ db.get_row(table_name = 'User', data_list = {'email':session['email']})[1] }}</h2>
+            </div>
+          </div>
+          <div class="form-container">
+            <div class="form-heading" style="color:white">
+              <h4>My Account</h4>
+            </div>
+            <form action="#" method="POST" enctype="multipart/form-data" style="color: white;" id="form-t">
+              {{ form.hidden_tag() }}
+              <div class="parent-form-div">
+                <div class="left">
+                  <div class="entry" style="padding-top: 1px;">
+                    {{ form.username_field.label }} <br/>
+                    {{ form.username_field(class = 'field', value = db.get_row(
+                      table_name='User',
+                      data_list={
+                          'email':session.get('email'),
+                      }
+                      )[1])  }}
+                    <div class="err">
+                      {{ username_err }}
+                    </div>
+                  </div>
+
+                  <div class="entry">
+                    {{ form.email_field.label }} <br/>
+                    {{ form.email_field(class = 'field', value = db.get_row(
+                      table_name='User',
+                      data_list={
+                          'email':session.get('email'),
+                      }
+                      )[3]) }}
+                    <div class="err">
+                      {{ email_err }}
+                    </div>
+                  </div>
+
+                  <div class="entry">
+                    <div class="file-input">
+                      {{ form.profile_img_field.label }} <br/>
+                      {% if form.profile_img_field.errors %}
+                        {{ form.profile_img_field(class = 'file')}}
+                        <div class="err">
+                          {% for error in errors  %}
+                        <span>{{ error }}</span> 
+                        {% endfor %}
+                        </div>
+                      {% endif %}
+                      {{ form.profile_img_field(class = 'file', id="file-select")}}
+                    </div>
+                  </div>
+                </div>
+
+                
+                <div class="right">
+                  <div class="entry" style="padding-top: 1px;">
+                    {{ form.name.label }} <br/>
+                    {{ form.name(class = 'field', value = db.get_row(
+                      table_name='User',
+                      data_list={
+                          'email':session.get('email'),
+                      }
+                      )[7]) }}
+                  </div>
+
+                  <div class="entry">
+                    <div class="file-input">
+                      {{ form.telephone.label }} <br/>
+                      {{ form.telephone(class = 'field', value = db.get_row(
+                        table_name='User',
+                        data_list={
+                            'email':session.get('email'),
+                        }
+                    )[8])}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="submit-div">
+                <div class="entry">
+                  {{ form.update_button(class = 'button', id = 'file_input') }}
+                </div>
+              </div>
+              <div class="change-profile-img-pop-up" id="profile-img-popup" style="visibility: hidden;">
+                <div class="heading-s" style="display:flex; justify-content:center; align-items:center; gap:70%">
+                  <h5 style="color:white; padding-top:30px;padding-bottom:10px; text-align:center;">Select an image:</h5>
+                  <img src="{{ url_for('static', filename = 'close.png') }}" alt="" height="40" id="close-btn" onclick="closePopUp()">
+                </div>
+                <hr>
+            
+                <div class="options">
+                  <div class="new-img" style="color: white;" id="new-img">
+                    <div class="msg-new" style="color: white;"> {{ form.profile_img_field(class = 'msg-new', style = "color:white;", id=  "file-select") }}
+                    </div>
+                  </div>
+            
+                  <div class="rem-img" id="rem-img">
+                    <div class="msg-del" style="color: white;">
+                      <h5>Delete Profile Picture</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="m" style="display:flex; justify-content:center; padding-top:1vw">
+                  <button class="change" id="change" onclick="update()">Change</button>
+                </div>
+              </div>
+
+            </form>
+          </div>
+        </div>
+      </div>
+      <script src = '{{url_for("static", filename = "updateaccount.js")}}'>
+    </script>
+  </div>
+
+  
+{% endblock content %}
+
+
+

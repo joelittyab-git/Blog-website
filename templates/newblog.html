@@ -1,0 +1,157 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'newblog.css') }}">
+    <script src="{{ url_for('static', filename = 'newblog.js') }}"></script>
+</head>
+
+{% extends 'common/mTemplate.html' %}
+
+{% block content %}
+
+<script>
+    document.onreadystatechange = function(){
+        if(document.readyState == 'complete'){
+            document.getElementById('spinner-border').style.display = 'none';
+            document.getElementById('loading-mask').style.visibility = 'visible';
+        }else{
+            document.getElementById('spinner-border').style.visibility = 'visible';
+            document.getElementById('loading-mask').style.visibility = 'hidden';
+        }
+    }
+
+</script>
+    <div class="body">
+        <div class="body-container">
+            <div class="card">
+                <div class="heading">
+                    <img src="{{ url_for('static', filename = 'files/' + (user_info.get_user_profile_img(session.get('email')))) }}" alt="" height="60" style="border-radius: 50%; height:100px; width:100px">
+                    <div>
+                        <h5><a href="localhost:5000/user-profile" style="color: #1e90ff !important;">@{{user_info.get_username(session.get('email'))}}</a> </h5>
+                        <h6 style="color:#888799">{{ user_info.get_current_date() }}</h6>
+                        <h6 style="color:#888799">0</h6>
+                    </div>
+                </div>
+                <hr>
+                <div class="blog-details-div">
+                    <form action="#" method="POST" enctype="multipart/form-data" style="height:100%">
+                        {{form.csrf_token }}
+
+                        <div class="entry-div" style="height:100%">
+                            
+                                {{ form.title_field.label(class = 'label-t') }}
+                                {{ form.title_field(class = 'entry', placeholder = "Example: A Midnight Shadow") }}
+
+                                <br><br>
+
+                                <div style="display: flex;gap:4%;width:100%">
+                                    <div style="width:30%">
+                                        {{ form.tags_field.label(class='label-t') }}
+                                        {{ form.tags_field(style = 'border-radius:100px; background-color:#312F35; padding:17px;height:34px; border-width:0;color:white; margin-left:20px;width:80%', readonly = True, id='tag-field', placeholder = "Select blog category") }}
+                                    </div>
+                                    
+                                    {{ form.others_field(class ='entry',  id="others-entry", style="visibility: hidden; width:10%; padding :20px;margin-top:20px;" ,class="entry" ,placeholder="Others") }}
+                                </div>
+                                    
+
+                                <div id="tag-drop-down" style="visibility: hidden;">
+                                    <header style="visibility: hidden;">
+                                        <h4>Select</h4>
+                                    </header>
+                                    <select name="sites-list" multiple id="select-opt">
+                                        
+                                        {% for x in (user_info.get_blog_categories())  %}
+                                          <option value="{{ x }}">{{ x }}</option>
+                                        {% endfor %}
+                                            <option value="others">Others</option>
+
+                                    </select>
+                                </div>   
+
+                                <br><br>
+                                
+                                <div class="label-t" style="margin-bottom: 0.8%;">
+                                    Content:
+                                </div>
+                                <div class="content-grp">
+                                    <div class="entry content-div" style='height:30vw;overflow-y: auto;' placeholder= 'Type your content here' contenteditable="true" id="editable" contenteditable data-placeholder="Type your content here">
+
+                                    </div>
+                                    <div class="content-tools">
+                                        <button style="background-color: transparent;border:0;"><img src="{{ url_for('static', filename = 'ad.png') }}" alt="" height="25"></button><br>
+                                        <button style="background-color: transparent;border:0;" id="bold-text-ctnt"><img src="{{ url_for('static', filename = 'bld.png') }}" alt="" height="25"></button> <br>
+                                        <button style="background-color: transparent;border:0;" id=""><img src="{{ url_for('static', filename = 'itlc.png') }}" alt="" height="25"></button>
+                                    </div>
+                                </div>
+                                <div style="font-size: large; color:red;">
+                                    {% if content_err!=None %}
+                                        <span>{{ content_err }}</span>
+                                    {% endif %}
+                                </div>
+                                
+
+                                <br><br><br>
+
+                                {{ form.user_tags.label(class = 'label-t') }}
+                                {{ form.user_tags(class = 'entry ex', placeholder = "Tag users here!!", id='user-tag-field') }}
+                                <div class="user-dropdown" id="user-dropdown">
+                                    <button>Joel</button>
+                                    <button>Joel</button>
+                                    <button>Joel</button>
+                                    <button>Joel</button>
+                                    <button>Joel</button>
+                                    <button>Joel</button>
+                                </div>
+                                <br><br><br>
+
+                                {{ form.tagged_topics.label(class = 'label-t ') }}
+                                {{ form.tagged_topics(class = 'entry ex', placeholder ='Topics:', id = 'topic-tag-field') }}'
+
+                                <style>
+                                    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+                                    
+                                    .btn{
+                                        
+                                        font-family: Roboto, sans-serif;
+                                        font-weight: 200;
+                                        font-size: 17px;
+                                        color: #fff;
+                                        background-color: #0066CC;
+                                        padding: 10px 30px;
+                                        border: 2px solid #0066cc;
+                                        border-radius: 7px;
+                                        transition : 0.5s;
+                                        transform: translateY(0);
+                                        display: flex;
+                                        flex-direction: row;
+                                        align-items: center;
+                                        cursor: pointer;
+                                        margin-top: 100px;
+                                    }
+                                    
+                                    .btn:hover{
+                                    
+                                        transition : 0.5s;
+                                        padding: 10px 50px;
+                                        transform : translateY(-0px);
+                                        background-color: transparent;
+                                        color: #0066cc;
+                                        border: solid 2px #0066cc;
+                                    }
+                                    
+                                    </style>
+            
+                                <!-- 2️⃣code HTML below -->
+                                
+                                <div style="display:flex; justify-content:center;">
+                                    {{ form.submit(class = "btn", content="{{ form.submit.label() }}") }}
+                                </div>
+
+                        </div>
+                    </form>
+                </div>
+                <br>
+            </div>
+        </div>
+        <div class="overlay" id="overlay" style="visibility: hidden;"></div>
+    </div>
+    
+{% endblock content %}

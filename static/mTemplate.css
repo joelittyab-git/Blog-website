@@ -1,0 +1,183 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&family=Open+Sans:ital,wght@1,300&family=Spectral:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&family=Wix+Madefor+Text&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital@1&family=Roboto:wght@300&display=swap');
+
+
+body, html{
+    background-color: #222222;
+    margin: 0;
+    padding: 0;
+}
+
+
+.container{
+    width: 80%;
+    margin: 0 auto;
+}
+
+:any-link{
+    color: white !important;
+    text-decoration: none !important;
+}
+
+header{
+    background-color: #7234fa;
+    
+    
+}
+
+.logo{
+    float: left;
+    padding: 20px 0;
+}
+
+
+header ::after{
+    content: '';
+    display: table;
+    clear: both;
+}
+
+nav{
+    float : right;
+    font-size: large;
+    font-weight: 550;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 800;
+}
+
+nav ul{
+    margin: 0;
+    padding: 0;
+    list-style: none; 
+}
+
+nav li{
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 23px;
+}
+
+nav a{
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    transition-duration: 0.4s;
+}
+
+nav a:hover{
+    text-decoration: none;
+    border-color: black;
+    border-right-width: 0;
+    border-left-width: 0;
+    border-top-width: 0;
+    border-bottom-width: 1px;
+    border-style: solid;
+}
+
+:any-link{
+    text-decoration: none;
+}
+
+nav li a{
+    text-decoration: none;
+}
+
+.flash-messages{
+    width: 100%;
+    height: 30px !important;
+}
+
+.success{
+    background-color: lightgreen!important;
+}
+
+.pop-up{
+    border: 1px solid #7234fa ;
+    position: fixed;
+    font-family: 'Nunito', sans-serif;
+    font-family: 'Wix Madefor Text', sans-serif;
+    height: 28%;
+    background-color: #1d1d1d !important;
+    color:  white !important;
+    visibility: hidden !important;
+    width: 30%;
+    text-align: center;
+    bottom: 50%;
+    left: 50%;
+    padding: 20px;
+    transform: translate(-50%, 0);
+    margin: 0px;
+    padding: 0%;
+}
+
+.button-div{
+    background-color: black;
+    padding: 20px;
+    width: 100%;
+    height: 30%;
+    position: absolute;
+    bottom: 0%;
+    gap: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.button-div>*{
+    width: 25%;
+    min-width: 18%;
+}
+
+.action{
+    animation: pop-up-action 1s ease;
+    visibility: visible !important;
+}
+
+.done{
+    visibility: hidden !important;
+}
+
+@keyframes pop-up-action{
+    0%{
+        bottom: 0;
+    }
+
+    100%{
+        bottom:50%;
+    }
+}
+.m-hr{
+    color:#7234fa;
+    background-color: #7234fa;
+}
+
+.button-div{
+    display: flex !important;
+}
+
+.inner-pop{
+    display: contents;
+    justify-content: center !important;
+}
+
+.button-m{
+    border-radius: 12px;
+    color: white !important;
+    border: 0px;
+    transition-duration: 0.5s;
+}
+
+.button-m:hover{
+    transform: translateX(12px) !important;
+    background-color: transparent !important;
+}
+
+#spinner-border{
+    position: fixed !important;
+    top: 45%;
+    left: 50%;
+    /* bring your own prefixes */
+    transform: translate(-50%);
+}

@@ -1,0 +1,143 @@
+<head>
+    <link rel="stylesheet" href="{{url_for('static', filename = 'register.css')}}">
+    <script src="{{ url_for('static', filename = 'register.js') }}"
+        >
+        </script>
+</head>
+
+{% extends "common/mTemplate.html" %}
+{% block content %}
+    <div class="body-div">
+        <div class="register-container">
+            <div class="form-container">
+                <div class="heading">
+                    <h3>Join Us</h3>
+                </div>
+                <hr>
+                <div class="entry-container">
+                    <form method="POST" action="#" >
+                        {{ form.hidden_tag() }}
+                        <div class="m1">
+                            <fieldset class="lft-fldst">
+                                <legend>Sign Up</legend>
+
+                                <div class="fld-set">
+                                    <div class="pad-top-10px">
+                                        {{ form.username_field.label(class='label') }}
+                                        <br>
+                                        {% if form.username_field.errors %}
+                                            {{ form.username_field(class='entry err')}}
+                                            <div class="err-text">
+                                                {% for error in form.username_field.errors %}
+                                                    <span>{{ (error) }}</span>
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.username_field(class='entry')}}
+                                            <div class="err-text">
+                                                <span>{{ username_invalidity }}</span>
+                                            </div>
+                                        {% endif %}
+                                    </div>
+                                    <div class="pad-top-10px">
+                                        {{ form.email_field.label(class='form-control-label') }}
+                                        <br>
+                                        {% if form.email_field.errors %}
+                                            {{ form.email_field(class = "entry err")}}
+                                            <div class="err-text">
+                                                {% for error in form.email_field.errors %}
+                                                    <span>{{ error }}</span> 
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.email_field(class = "entry")}}
+                                            <div class="err-text">
+                                                <span>{{ email_invalidity }}</span>
+                                            </div>
+                                        {% endif  %}
+                                    </div>
+                                    <div class="pad-top-10px">
+                                        {{ form.password_field.label(class='form-control-label') }}
+                                        <br>
+                                        
+                                        {% if  form.password_field.errors %}
+                                            {{ form.password_field(class='entry err')}}
+                                            <div class="err-text" id="password-error-field">
+                                                {% for error in form.password_field.errors %}
+                                                    <span id="password-error-field">{{ error }}</span>    
+                                                {% endfor %}
+                                            </div>
+                                        {% else %}
+                                            {{ form.password_field(class='entry')}}
+                                        {% endif %}
+                                        <div class="password-error-field-js" id="password-error-field-js"></div>
+                                    </div>
+                                    <div class="pad-top-10px">
+                                        {{ form.confirm_password_field.label(class='form-control-label') }}
+                                        <br>
+                                        {% if  form.confirm_password_field.errors %}
+                                            {{ form.confirm_password_field(class='entry err')}}
+                                            <div class="err-text" style="color: red !important;">
+                                                Please ensure your passwords match
+                                            </div>
+                                        {% else %}
+                                            {{ form.confirm_password_field(class='entry')}}
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </fieldset>
+                            <div class="vertical-ruler"></div>
+
+                            <fieldset>
+                                <legend>Personal Details</legend>
+                                
+                                <div class="fld-set">
+                                    <div class="pad-top-10px">
+                                        {{ form.name.label(class='label') }}
+                                        <br>
+                                        {{ form.name(class='entry')}}
+                                    </div>
+                                    <div class="pad-top-10px">
+                                        {{ form.telephone.label(class='form-control-label') }}
+                                        <br>
+                                        {% if form.telephone.errors %}
+                                            {{ form.telephone(class='entry')}}
+                                            <div class="err-text" >
+                                                <span>Enter valid telephone number.</span>
+                                            </div>
+                                        {% else %}
+                                            {{ form.telephone(class='entry')}}
+                                        {% endif %}
+                                        
+                                    </div>
+                                    <div class="pad-top-10px">
+                                        {{ form.age.label(class='form-control-label') }}
+                                        <br>
+                                        {{ form.age(class='entry')}}
+                                    </div>
+                                    <div class="pad-top-10px">
+                                        {{ form.dob.label(class='form-control-label') }}
+                                        <br>
+                                        {{ form.dob(class='entry')}}
+                                    </div>
+                            </fieldset>
+                        </div>
+
+                        <div class="button" >
+                            <div class = 'left'>
+                                {{ form.submit_field(class = 'sign-button') }}
+                            </div>
+    
+                            <div class="right">
+                                Already have an account? &nbsp;<a href="login">Sign In</a>
+                            </div>
+                        </div>
+                        
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

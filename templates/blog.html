@@ -1,0 +1,115 @@
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'blog.css') }}">
+</head>
+{% extends 'common/mTemplate.html' %}
+
+{% block content %}
+
+<script>
+    document.onreadystatechange = function(){
+        if(document.readyState == 'complete'){
+            document.getElementById('spinner-border').style.display = 'none';
+            document.getElementById('loading-mask').style.visibility = 'visible';
+        }else{
+            document.getElementById('spinner-border').style.visibility = 'visible';
+            document.getElementById('loading-mask').style.visibility = 'hidden';
+        }
+    }
+</script>
+
+
+    <div class="template-container">
+        <div class="template-body">
+            <div class="left-temp">
+                <div class="post">
+
+                </div>
+
+                <div class="post">
+
+                </div>
+
+                <div class="post">
+
+                </div>
+
+                <div class="post">
+
+                </div>
+
+                <div class="post">
+
+                </div>
+            </div>
+    
+            <div class="right-temp">
+                <div class="dashboard">
+                    <div class="d-inner">
+                        <div class="header" style="height:30%;">
+                            <div class="header-inner" style="height:100%;text-align: center; display:flex; align-items:center;justify-content:center;">
+                                <h4>Welcome {{ user[7] }}</h4>
+                            </div>
+                        </div>
+                        <div class="info-cont">
+                            <img src="{{ url_for('static', filename = 'files/' + (db.get_row(table_name = 'User', data_list = {'email':session['email']})[4] )) }}" alt="" class="profile-img">
+                            <div>
+                                <div><a href="{{ url_for('open_profilepage') }}" style="color:rgb(103, 103, 247) !important;">@{{ user[1] }}</a></div>
+                                <div>{{ user[5] }}</div>
+                                <div>{{ Data.get_user_age(session.get('email')) }}</div>
+                            </div>
+                        </div>
+                        <br><br>
+                        <div class="content" style="text-align:center">
+                            Blogs posted: {{ Data.get_user_blogs_posted(session.get('email'))}} <br><br>
+                            Following Categories: {{ Data.get_following_categories(session.get('email'))}}
+                        </div>
+
+                        <!--1️⃣ code CSS below -->
+
+                        <style>
+                            @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Koulen&family=Lato&family=Nunito&family=Playfair+Display:ital@1&family=Prata&family=Raleway:ital,wght@1,100&family=Roboto&family=Roboto+Condensed&family=Teko&display=swap');
+                            
+                            .btn{
+                                
+                                font-family: Roboto, sans-serif;
+                                font-weight: 200;
+                                font-size: 17px;
+                                color: #fff;
+                                background-color: #0066CC;
+                                padding: 10px 30px;
+                                border: 2px solid #0066cc;
+                                border-radius: 7px;
+                                transition : 0.5s;
+                                transform: translateY(0);
+                                display: flex;
+                                flex-direction: row;
+                                align-items: center;
+                                cursor: pointer;
+                                margin-top: 100px;
+                            }
+                            
+                            .btn:hover{
+                            
+                                transition : 0.5s;
+                                padding: 10px 50px;
+                                transform : translateY(-0px);
+                                background-color: transparent;
+                                color: #0066cc;
+                                border: solid 2px #0066cc;
+                            }
+                            
+                            </style>
+    
+                        <!-- 2️⃣code HTML below -->
+                        
+                        <div style="display:flex; justify-content:center;">
+                            <button class="btn" id="new-post-redirect">New Post</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src = '{{ url_for("static", filename = "blog.js") }}'></script>
+{% endblock content %}
