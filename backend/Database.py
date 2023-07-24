@@ -1,7 +1,7 @@
 from mysql.connector import connect
 from backend.Console import Pen
 import re
-
+from backend import __credentials as dbcred
 
 class database:
     
@@ -12,9 +12,9 @@ class database:
     '''
     def __init__(
         self,
-        username = 'root',
-        password = 'Tiger@123',
-        database = 'utilities_website_db'
+        username = f'{dbcred.USERNAME}',
+        password = f'{dbcred.PASSWORD}',
+        database = f'{dbcred.DATABASE}', 
     ):
         self.__database = database
         
