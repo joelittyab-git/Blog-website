@@ -2,3 +2,4 @@ flask_session/
 *.pyc 
 backend/__credentials.py
 backend/test.py
+backend/validation_test.py
