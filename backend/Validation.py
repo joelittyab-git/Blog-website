@@ -1,12 +1,16 @@
 from backend.Database import database
 from flask_bcrypt import Bcrypt
-    
+from backend.__credentials import (
+    USERNAME,
+    PASSWORD,
+    DATABASE
+)
 
 class SuperDatabase():
     db = database(
-        username='root',
-        password='Tiger@123',
-        database='utilities_website_db'
+        username=USERNAME,
+        password=PASSWORD,
+        database=DATABASE
     )
     
     encrypt = Bcrypt()
@@ -43,9 +47,9 @@ class Register(SuperDatabase):
         #initializing database connection
         if(__class__.db == None or not __class__.db.get_connection_status()):
             SuperDatabase.db = database(
-                username='root',
-                password='Tiger@123',
-                database='utilities_website_db'
+                username=USERNAME,
+                password=PASSWORD,
+                database=DATABASE
             )
         
         
@@ -150,9 +154,9 @@ class Login(SuperDatabase):
     ):
         if(__class__.db == None or not __class__.db.get_connection_status()):
             SuperDatabase.db = database(
-                username='root',
-                password='Tiger@123',
-                database='utilities_website_db'
+                username=USERNAME,
+                password=PASSWORD,
+                database=DATABASE
             )
             
         return Login.validate_login(email, password)
@@ -231,9 +235,9 @@ class UpdateAccount(SuperDatabase):
         y = 1
         if(__class__.db == None or not __class__.db.get_connection_status()):
             SuperDatabase.db = database(
-                username='root',
-                password='Tiger@123',
-                database='utilities_website_db'
+                username=USERNAME,
+                password=PASSWORD,
+                database=DATABASE
             )
             
         #Checks if the entries are empty, none or defualt

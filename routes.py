@@ -6,7 +6,12 @@ from init import app,parent_db,sess,socket
 from backend.Validation import Register, Login, UpdateAccount
 from backend.Database import database
 from backend.UserInfo import Data
-
+from backend.__credentials import (
+    USERNAME,
+    PASSWORD,
+    DATABASE
+    
+)
 site_initial = 'Dot.IO | '
 sess.init_app(app)
 
@@ -105,8 +110,8 @@ def open_loginpage():
             )
         ):
             db = database(
-                username='root',
-                password='Tiger@123'
+                username=USERNAME,
+                password=PASSWORD
             )
             flash(f'''Logged in as
                   {db.get_row(
@@ -149,8 +154,8 @@ def open_accountsupdatepage():
     
     parent_db = None
     parent_db = database(
-        username='root',
-        password='Tiger@123',
+        username=USERNAME,
+        password=PASSWORD,
     )
     
     #Checks is the user is logged in

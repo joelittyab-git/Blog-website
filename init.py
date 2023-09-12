@@ -2,6 +2,11 @@ from flask import Flask
 from flask_session import Session
 from backend.Database import database
 from flask_socketio import SocketIO
+from backend.__credentials import(
+    USERNAME,
+    PASSWORD,
+    DATABASE
+)
 
 app = Flask(__name__)
 
@@ -17,9 +22,9 @@ socket = SocketIO(app)
 
 #Database configurations
 parent_db = database(
-    username='root',
-    password='Tiger@123',
-    database='utilities_website_db'
+    username = f'{USERNAME}',
+    database = f'{DATABASE}',
+    password = f'{PASSWORD}',
 )
 
 class Constants:
@@ -28,6 +33,6 @@ class Constants:
     host = 'localhost'
     
     #Database
-    username = 'root'
-    database = 'utilities_website_db'
-    password = 'Tiger@123'
+    username = f'{USERNAME}'
+    database = f'{DATABASE}'
+    password = f'{PASSWORD}'

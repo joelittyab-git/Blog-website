@@ -1,14 +1,15 @@
 from backend.Validation import SuperDatabase
 from backend.Database import database
+import __credentials as dbcred
 from random import randint
 class Data(SuperDatabase):
     @staticmethod
     def get_user_blogs_posted(session_email):
         if(SuperDatabase.db is None or SuperDatabase.db.get_connection_status() is False):
             SuperDatabase.db = database(
-                username='root',
-                password='Tiger@123',
-                database='utilities_website_db'
+               username = f'{dbcred.USERNAME}',
+                password = f'{dbcred.PASSWORD}',
+                database = f'{dbcred.DATABASE}', 
             )
         
         user_id = SuperDatabase.db.get_row(
