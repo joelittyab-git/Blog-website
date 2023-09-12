@@ -345,9 +345,9 @@ class database:
     def reestablish_connection(self):
         self = None
         self = self.__init__(
-            username = 'root',
-            password = 'Tiger@123',
-            database = 'utilities_website_db'
+            username = f'{dbcred.USERNAME}',
+            password = f'{dbcred.PASSWORD}',
+            database = f'{dbcred.DATABASE}', 
         )
         
         
